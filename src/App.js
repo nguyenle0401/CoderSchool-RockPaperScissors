@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import "./App.css";
+import Button from 'react-bootstrap/Button';
 import ChoiceButtons from "./components/ChoiceButtons";
 import ChoiceCard from "./components/ChoiceCard";
 import {CHOICES,getRoundOutcome} from "./utils";
@@ -15,6 +16,7 @@ function App() {
     const [computerChoice, setComputerChoice] = useState(null);
     const [previousWinner, setPreviousWinner] = useState(null);
     const [gameHistory, setGameHistory] = useState([]);
+    const [start, setStart] = useState(false);
  
 
     const onPlayerChoose = playerChoice => {
@@ -37,6 +39,7 @@ function App() {
         setGameHistory(gameHistory);
       
     }
+    const startGame = () => setStart(true);
 
     return (
         <div className="App">
@@ -48,8 +51,9 @@ function App() {
                             previousWinner={previousWinner}
                             imgURL={computerChoice && computerChoice.url}
                         />
-                        <h1>{prompt}</h1>
-                        <ChoiceButtons onPlayerChoose={onPlayerChoose} />
+                        <Button variant="warning" onClick={()=> startGame()}>Start</Button>
+                        <h1 className = {prompt === "Victory!"? "green-text": prompt === "Defeat!"? "red-text" : "" }>{prompt==="Start"?"":prompt}</h1>
+                        { start ?<ChoiceButtons onPlayerChoose={onPlayerChoose}/>: null}
                         <ChoiceCard title="You" imgURL={playerChoice && playerChoice.url}
                             title="You"
                             previousWinner={previousWinner}
@@ -73,87 +77,4 @@ function App() {
 
 
 export default App;
-
-// import React from 'react'
-
-// export default function App() {
-//   const [prompt, setGamePrompt] = useState("1, 2, 3, SHOOT!");
-//   return (
-//     <div>
-//       <div className="App">
-//         <div className="container">
-//           <div className="row mb-3">
-//             <div className="col-md-8 themed-grid-col">
-//               <ChoiceCard title="You" imgURL={choices.rock} winner={this.state.winnerPerson}
-//               />
-//               <h1>{prompt}</h1>
-//               <ChoiceCard title="Computer" winner={true} imgURL={choices.paper}
-//               />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-// export default App;
-
-
-
-
-
-
-// const [prompt, setGamePrompt] = useState("1, 2, 3, SHOOT!");
-
-// function App() {
-//   const [prompt, setGamePrompt] = useState("Start!");
-//   return (
-//           <div className="App">
-//             <div className="container">
-//               <div className="row mb-3">
-//                 <div className="col-md-8 themed-grid-col">
-//                   <ChoiceCard title="You" imgURL={choices.rock} winner={this.state.winnerPerson}
-//                   />
-//                   <h1>{prompt}</h1>
-//                   <ChoiceCard title="Computer" winner={true} imgURL={choices.paper}
-//                   />
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         )
-//       }
-
-//       export default App;
-
-
-// export default class App extends Component {
-//   constructor() {
-//     super()
-//     this.state = {
-//       winnerPerson: false
-//     }
-
-//   }
-
-
-
-//   render() {
-//     return (
-//       <div className="App">
-//         <div className="container">
-//           <div className="row mb-3">
-//             <div className="col-md-8 themed-grid-col">
-//               <ChoiceCard title="You" imgURL={choices.rock} winner={this.state.winnerPerson}
-//                 />
-//               <h1>{prompt}</h1>
-//               <ChoiceCard title="Computer" winner={true} imgURL={choices.paper}
-//               />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     )
-//   }
-// }
 

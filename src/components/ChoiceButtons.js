@@ -5,13 +5,13 @@ export default function ChoiceButtons(props) {
         
             <div className="container">
                             <button className="btn btn-success btn-lg"
-                                onClick={() => props.onPlayerChoose("rock")}>Paper
+                                onClick={() => props.onPlayerChoose("rock")} >Paper
                             </button>
                             <button className="btn btn-success btn-lg"
-                                onClick={() => props.onPlayerChoose("paper")}>Scissors
+                                onClick={() => props.onPlayerChoose("paper")} >Scissors
                             </button>
                             <button className="btn btn-success btn-lg"
-                                onClick={() => props.onPlayerChoose("scissors")}>Rock
+                                onClick={() => props.onPlayerChoose("scissors")} >Rock
                             </button>
                         </div>
     )

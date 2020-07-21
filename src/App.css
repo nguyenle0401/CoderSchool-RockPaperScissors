@@ -50,3 +50,10 @@ button {
 ul {
   list-style: none;
 }
+
+.green-text{
+  color:rgb(12, 241, 12);
+}
+.red-text{
+  color:red;
+}
