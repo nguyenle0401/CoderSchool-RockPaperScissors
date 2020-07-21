@@ -17,7 +17,10 @@ function App() {
     const [previousWinner, setPreviousWinner] = useState(null);
     const [gameHistory, setGameHistory] = useState([]);
     const [start, setStart] = useState(false);
- 
+    // const [flawless, setFlawless] = useState(0);
+    const [userWin, setUserWin] = useState(false);
+    const [comWin, setComWin] = useState(false);
+
 
     const onPlayerChoose = playerChoice => {
         const [result, compChoice] = getRoundOutcome(playerChoice);
@@ -37,9 +40,26 @@ function App() {
         setGamePrompt(result);
         gameHistory.push(result);
         setGameHistory(gameHistory);
-      
+        let lengthHis = gameHistory.length
+        let His1 = gameHistory[lengthHis-1]
+        console.log(His1)
+        let His2 = gameHistory[lengthHis-2]
+        let His3 = gameHistory[lengthHis-3]
+        if( His1 === His2 === His3 === "Victory!"){
+            setUserWin(true);
+            setStart(false);
+        }else if (His1 === His2 === His3 === "Defeat!"){
+            setComWin(true);
+            setStart(false);
+            
+        }
     }
-    const startGame = () => setStart(true);
+    const startGame = () => {
+        setStart(true);
+        setComWin(false);
+        setUserWin(false);
+        setGameHistory([]);
+    }
 
     return (
         <div className="App">
@@ -69,6 +89,9 @@ function App() {
                         return <li>{result}</li>;
                     })}
                 </ul>
+                
+                        { userWin ?<h1>Flawless Victory for the User</h1>: null}
+                        { comWin ?<h1>Flawless Victory for the Computer</h1>: null}
             </div>
         </div>
     );
